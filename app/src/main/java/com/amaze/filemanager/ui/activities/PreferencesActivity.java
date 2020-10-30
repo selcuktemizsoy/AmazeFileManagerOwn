@@ -23,6 +23,8 @@ package com.amaze.filemanager.ui.activities;
 import static android.os.Build.VERSION.SDK_INT;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import com.amaze.filemanager.R;
@@ -52,6 +54,7 @@ import android.os.Parcelable;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -61,6 +64,8 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
+
+import sdk.pendo.io.Pendo;
 
 public class PreferencesActivity extends ThemedActivity
     implements FolderChooserDialog.FolderCallback {
@@ -87,6 +92,16 @@ public class PreferencesActivity extends ThemedActivity
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.prefsfrag);
+    Map <String, Object> newUserData = new HashMap<>();
+    newUserData.put("newId", " new object");
+    Map <String, Object> newAccountData = new HashMap<>();
+    newUserData.put("newAccount*2394923*94*230423*493*423fdmvmdsvdsççöçödçöfdfdf", " new AccountObject");
+
+    Pendo.switchVisitor(
+            "New Visitor IDasdasdqwq212dwdçsçdöasçdöasşdiaşsifdlsdöfşldsfşlmdsklfmskdfmvşfsd vf",
+            "New Account ID",
+             newUserData,
+             newAccountData);
 
     Toolbar toolbar = findViewById(R.id.toolbar);
     invalidateRecentsColorAndIcon();
@@ -268,6 +283,11 @@ public class PreferencesActivity extends ThemedActivity
    * @param item the Preference in question
    */
   public void selectItem(int item) {
+    HashMap<String, Object> properties = new HashMap<>();
+    properties.put("item", this.toString());
+    properties.put("index", String.valueOf(10));
+    Pendo.track("tracking list item", properties);
+
     selectedItem = item;
     switch (item) {
       case START_PREFERENCE:

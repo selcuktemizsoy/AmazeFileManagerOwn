@@ -21,6 +21,8 @@
 package com.amaze.filemanager.application;
 
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.amaze.filemanager.database.ExplorerDatabase;
 import com.amaze.filemanager.database.UtilitiesDatabase;
@@ -48,6 +50,7 @@ import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import jcifs.Config;
+import sdk.pendo.io.Pendo;
 
 public class AppConfig extends GlideApplication {
 
@@ -74,6 +77,30 @@ public class AppConfig extends GlideApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    Pendo.PendoInitParams pendoParams = new Pendo.PendoInitParams();
+    pendoParams.setVisitorId("Selcuk te");
+    pendoParams.setAccountId("app try beta 1.0.1");
+
+//send Visitor Level Data
+    Map<String, Object> userData = new HashMap<>();
+    userData.put("app/\n name", "file manager");
+    userData.put("country", "tr");
+    pendoParams.setUserData(userData);
+    System.out.println(userData.toString());
+
+//send Account Level Data
+    Map<String, Object> accountData = new HashMap<>();
+    accountData.put("Tier", "1");
+    accountData.put("Size", "Enterprise");
+    pendoParams.setAccountData(accountData);
+
+
+    Pendo.initSDK(
+            this,
+            "eyJhbGciOiJSUzI1NiIsImtpZCI6IiIsInR5cCI6IkpXVCJ9.eyJkYXRhY2VudGVyIjoidXMiLCJrZXkiOiJiYTExZTkxOTlhNDI5MGE2MmYyZGZlMDU2ODk4OTBlMDUyYzZiODIwZDk1YmY5YmI2YmZiMGEzZTJjNjdmNTFiNDFhYWRmNTlhYjAxZDhjNTRjNmMwMTliOTM1MWE5N2FkNTQ4MDMzZWE0NGM0ODAxMDFmOWNkYzkyMjM3ZDY4NmIwNTJkZjNlMzlkMzVmODI2ZDdlM2QzOWJhYjE4YTI4LjQzZTZkM2Y0ZTMzZmRhYjE0ZTI0NTczNjU1ZTQ4NGM4LmUzYmMxZjA1NjdhZTdhODBmNGY0OWZhZjEyN2FkYTVjYmJhNWRiMjAyNzY3MjQ2NTJhYmQ3YWU5MTgwM2ZkZGYifQ.EBHGqUA7E457fBoE84fVD9LDGq7e3H5WHUguTGdzDujPzEpeE_gvzUgeh6QLJob_FJC8QhZsEBH-s1i7WmnvhSlnpis_yAHYfMXkB-AcZsGX3ZbCQcYA-GWTqQ4XzMcxROl_YE7PXMTHEmNHGF_z26Cifuy-JWWya3Wfktb-8NU",
+            pendoParams);
+
+
     AppCompatDelegate.setCompatVectorFromResourcesEnabled(
         true); // selector in srcCompat isn't supported without this
     instance = this;

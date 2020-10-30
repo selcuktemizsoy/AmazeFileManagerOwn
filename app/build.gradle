@@ -22,10 +22,10 @@ android {
 
     defaultConfig {
         applicationId "com.amaze.filemanager"
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 28
-        versionCode 88
-        versionName "3.5.0-Beta3"
+        versionCode 89
+        versionName "3.5.2"
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
@@ -84,6 +84,19 @@ android {
         }
     }
 }
+repositories {
+    maven {
+        url "https://software.mobile.pendo.io/artifactory/android-sdk-externals"
+    }
+    maven {
+        url "https://software.mobile.pendo.io/artifactory/android-release"
+    }
+    maven {
+        url "https://software.mobile.pendo.io/artifactory/android-staging"
+    }
+    mavenCentral()
+}
+
 
 ext {
     robolectricVersion = '4.3.1'
@@ -104,7 +117,7 @@ ext {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-
+    implementation group:'sdk.pendo.io' , name:'pendoIO', version:'2.6.0.984', changing:true
     implementation 'androidx.vectordrawable:vectordrawable-animated:1.1.0'
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     implementation 'com.google.android.material:material:1.1.0'

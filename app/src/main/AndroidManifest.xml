@@ -115,6 +115,21 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="sdk.pendo.io.activities.PendoGateActivity" android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="pendo-47015be5"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="47015be5" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <meta-data android:name="insert_debug_logging" android:value="true" />
+
+
         <activity
             android:uiOptions="splitActionBarWhenNarrow"
             android:label="@string/setting"
